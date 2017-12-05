@@ -11,10 +11,11 @@ class App extends Component {
 
 
   render() {
-    let listedArray = this.state.myArray.map((element,index) => <h2>{element}</h2>)
+    let listedArray = this.state.myArray.map((element) => <h2>{element}</h2>)
 
     return (
       <div className="App">
+
       {listedArray}
   
       </div>

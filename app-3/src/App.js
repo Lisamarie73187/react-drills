@@ -1,19 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+    constructor(){
+      super()
+      this.state = {
+        toDoList: ['mop','sweep','walk the dog','homework','make dinner'],
+        text: 'la'
+      }
+    }
+
+    updateInput(val){
+      this.setState({ userInput: val})
+    }
+
+
+    solveProblem(value){
+      var arr = this.state.toDoList
+      for( var i = 0; i < arr.length; i++){
+        if(arr[i].includes(value) ){
+          return arr.push(arr[i])
+        }
+      }
+      this.setState({toDoList: arr})
+    }
+
+
   render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+    let filteredArray = this.state.toDoList.filter( (e) => e === this.state.text)
+    let listedArray = filteredArray.map((element) => <h2>{element}</h2>)
+    
+      return (
+        <div className="App">
+          <input></input>
+          <div>{listedArray}</div>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+        
     );
   }
 }
