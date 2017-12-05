@@ -6,34 +6,26 @@ class App extends Component {
       super()
       this.state = {
         toDoList: ['mop','sweep','walk the dog','homework','make dinner'],
-        text: 'la'
+        userInput: ''
+       
       }
     }
-
-    updateInput(val){
-      this.setState({ userInput: val})
+    updateInput(value){
+      this.setState({userInput: value})
     }
 
-
-    solveProblem(value){
-      var arr = this.state.toDoList
-      for( var i = 0; i < arr.length; i++){
-        if(arr[i].includes(value) ){
-          return arr.push(arr[i])
-        }
-      }
-      this.setState({toDoList: arr})
-    }
-
+    
 
   render() {
-    let filteredArray = this.state.toDoList.filter( (e) => e === this.state.text)
-    let listedArray = filteredArray.map((element) => <h2>{element}</h2>)
+      var filteredArray = this.state.toDoList.filter((element) => {
+        return element.includes(this.state.userInput)
+      })
+      var listArray = filteredArray.map( (e) => <h2>{e}</h2>)
     
       return (
         <div className="App">
-          <input></input>
-          <div>{listedArray}</div>
+          <input onChange={ (e) => this.updateInput(e.target.value)}></input>
+          <div>{listArray}</div>
         </div>
         
     );
